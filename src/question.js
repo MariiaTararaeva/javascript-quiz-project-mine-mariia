@@ -10,6 +10,7 @@ class Question {
       (this.answer = answer),
       (this.difficulty = difficulty);
   }
+  
   shuffleChoices() {
     for (let i = 0; i < this.choices.length; i += 1) {
         let index = Math.floor(Math.random() * this.choices.length);

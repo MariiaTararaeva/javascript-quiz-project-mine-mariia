@@ -2,9 +2,11 @@
 //
 class Quiz {
   constructor(questions, timeLimit, timeRemaining) {
+    questions
     this.questions = questions;
     this.timeLimit = timeLimit;
     this.timeRemaining = timeRemaining;
+
   }
   correctAnswers = 0;
   currentQuestionIndex = 0;
@@ -25,10 +27,11 @@ class Quiz {
   }
 
   checkAnswer(answer) {
-    if (answer.length > 0) {
+    if (answer === this.getQuestion().answer) {
       this.correctAnswers++;
     }
   }
+
   hasEnded() {
     if (this.currentQuestionIndex < this.questions.length) {
       return false;
