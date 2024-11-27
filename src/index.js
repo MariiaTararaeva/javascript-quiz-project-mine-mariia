@@ -99,7 +99,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Update the inner text of the question container element and show the question text
    
     questionContainer.innerText = question.text;
-    choiceContainer.innerHTML = question.choices;
 
     // 2. Update the green progress bar
     // Update the green progress bar (div#progressBar) width so that it shows the percentage of questions answered
@@ -112,9 +111,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Update the question count (div#questionCount) show the current question out of total questions
     
     questionCount.innerText = `Question ${quiz.currentQuestionIndex + 1} of ${quiz.questions.length}`; //  This value is hardcoded as a placeholder
-
-
-    
     // 4. Create and display new radio input element with a label for each choice.
     // Loop through the current question `choices`.
       // For each choice create a new radio input with a label, and append it to the choice container.
@@ -128,6 +124,27 @@ document.addEventListener("DOMContentLoaded", () => {
       // Hint 2: You can use the `element.type`, `element.name`, and `element.value` properties to set the type, name, and value of an element.
       // Hint 3: You can use the `element.appendChild()` method to append an element to the choices container.
       // Hint 4: You can use the `element.innerText` property to set the inner text of an element.
+      
+      // go through each choice, create the emptz radio input with the current choice as its value and label
+      question.choices.forEach(function (currentChoice, index){
+
+        const newDiv = document.createElement("INPUT");
+        newDiv.setAttribute("type", "radio");
+        newDiv.setAttribute('name', 'choice');  // Add a name to group the radio buttons
+        newDiv.setAttribute('value', currentChoice);  // Set the value to the current choice
+        // unique id necessary, otherwise same choice is repeated over
+        const radioId = 'choice_' + index;
+        newDiv.setAttribute('id', radioId); 
+
+        // Create a label for the radio input; choice itself
+        const label = document.createElement('label');
+        label.setAttribute('for', radioId);  // Set the text of the label
+        label.innerText = currentChoice;
+        choiceContainer.appendChild(newDiv); // first the radio input on the left
+        choiceContainer.appendChild(label); // and the current Choice as label next to the button 
+        choiceContainer.appendChild(document.createElement('br')); // new line after each choice     
+        })
+      
 
   }
 
