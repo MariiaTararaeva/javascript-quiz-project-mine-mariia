@@ -222,7 +222,7 @@ document.addEventListener("DOMContentLoaded", () => {
       quiz.shuffleQuestions();
       showQuestion();
       quiz.timeRemaining = quizDuration;
-      timerCreation(quizDuration, timer);
+      timerCreation(quizDuration);
 
     });
   }
